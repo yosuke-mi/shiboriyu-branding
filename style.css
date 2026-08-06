@@ -2244,4 +2244,10 @@ body {
     display: none;
   }
 }
-/* ===== MOBILE NAVIGATION ===== */
+/* ===== REVEAL DISPLAY EMERGENCY FIX ===== */
+
+.reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
