@@ -534,3 +534,504 @@ footer > p { grid-column:1/-1; margin:20px 0 0; padding-top:25px; border-top:1px
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
 }
+/* ========================================
+   STORY SECTION - POP REDESIGN
+======================================== */
+
+.story.section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(255, 79, 163, 0.20),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(51, 230, 255, 0.22),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fffaf2 0%,
+      #f6efff 52%,
+      #ecfcff 100%
+    );
+}
+
+.story.section::before {
+  content: "STORY / STORY / STORY";
+  position: absolute;
+  top: 90px;
+  left: -30px;
+  z-index: 0;
+
+  color: rgba(18, 22, 51, 0.05);
+  font-size: clamp(70px, 12vw, 190px);
+  font-weight: 900;
+  letter-spacing: -0.07em;
+  white-space: nowrap;
+  transform: rotate(-5deg);
+
+  pointer-events: none;
+}
+
+.story-grid {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(45px, 7vw, 110px);
+  align-items: center;
+}
+
+.story-visual {
+  position: relative;
+  transform: rotate(-2deg);
+}
+
+.photo-placeholder {
+  position: relative;
+  min-height: 560px;
+  padding: 30px;
+
+  display: flex;
+  align-items: flex-end;
+
+  border: 3px solid var(--ink);
+  border-radius: 32px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 25% 20%,
+      rgba(217, 255, 56, 0.95),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 78% 72%,
+      rgba(255, 79, 163, 0.75),
+      transparent 28%
+    ),
+    linear-gradient(
+      145deg,
+      #6478ff 0%,
+      #4de6ff 48%,
+      #ffd4e6 100%
+    );
+
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+
+  box-shadow: 14px 14px 0 var(--ink);
+}
+
+.photo-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 16% 16% 0 30%;
+
+  background:
+    linear-gradient(
+      #1b1b24 0 18%,
+      #f0ebe2 18%
+    );
+
+  clip-path: polygon(
+    30% 0,
+    70% 0,
+    78% 20%,
+    100% 100%,
+    0 100%,
+    22% 20%
+  );
+
+  opacity: 0.88;
+}
+
+.photo-placeholder::after {
+  content: "まだ、わからなくていい。";
+  position: absolute;
+  left: 24px;
+  top: 24px;
+
+  padding: 10px 16px;
+
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+
+  background: var(--lime);
+  color: var(--ink);
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: rotate(-4deg);
+}
+
+.vertical-note {
+  position: absolute;
+  top: 30px;
+  right: -38px;
+
+  padding: 14px 9px;
+
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+
+  background: var(--pink);
+  color: #ffffff;
+
+  writing-mode: vertical-rl;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.story-text {
+  position: relative;
+  padding: clamp(30px, 4vw, 60px);
+
+  border: 2px solid var(--ink);
+  border-radius: 34px;
+
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 10px 10px 0 var(--ink);
+}
+
+.story-text::before {
+  content: "?";
+  position: absolute;
+  top: -35px;
+  right: 30px;
+
+  display: grid;
+  place-items: center;
+
+  width: 74px;
+  height: 74px;
+
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+
+  background: var(--cyan);
+  color: var(--ink);
+
+  font-size: 42px;
+  font-weight: 900;
+
+  box-shadow: 5px 5px 0 var(--ink);
+  transform: rotate(10deg);
+
+  animation: storyFloat 4.5s ease-in-out infinite;
+}
+
+.large-copy {
+  margin-bottom: 30px;
+
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(30px, 3.8vw, 56px);
+  font-weight: 900;
+  line-height: 1.45;
+  letter-spacing: -0.05em;
+}
+
+.story-text > p:not(.large-copy) {
+  max-width: 620px;
+  margin-bottom: 0;
+
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2;
+}
+
+@keyframes storyFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(10deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+
+
+/* ========================================
+   FOUR QUESTIONS - COLOR CARD REDESIGN
+======================================== */
+
+.dark-section {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 18%,
+      rgba(255, 79, 163, 0.32),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 78%,
+      rgba(51, 230, 255, 0.32),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #5c5cff 0%,
+      #845cff 48%,
+      #ff62ad 100%
+    );
+
+  color: #ffffff;
+}
+
+.dark-section::before {
+  content: "WHY? WHY? WHY?";
+  position: absolute;
+  left: -50px;
+  bottom: 10px;
+
+  color: rgba(255, 255, 255, 0.07);
+  font-size: clamp(90px, 17vw, 250px);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  white-space: nowrap;
+  transform: rotate(-7deg);
+
+  pointer-events: none;
+}
+
+.dark-section .section-heading,
+.dark-section .theme-list {
+  position: relative;
+  z-index: 2;
+}
+
+.theme-list {
+  display: grid;
+  gap: 20px;
+
+  border-top: 0;
+}
+
+.theme-card {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 80px 0.38fr 1fr;
+  align-items: center;
+  gap: 30px;
+
+  min-height: 150px;
+  padding: 28px 34px;
+
+  border: 2px solid var(--ink);
+  border-radius: 26px;
+
+  background: #ffffff;
+  color: var(--ink);
+
+  box-shadow: 8px 8px 0 var(--ink);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.theme-card:nth-child(1) {
+  background: var(--lime);
+  transform: rotate(-1deg);
+}
+
+.theme-card:nth-child(2) {
+  background: var(--cyan);
+  transform: rotate(1deg);
+}
+
+.theme-card:nth-child(3) {
+  background: #ffb5d5;
+  transform: rotate(-1deg);
+}
+
+.theme-card:nth-child(4) {
+  background: #ffe295;
+  transform: rotate(1deg);
+}
+
+.theme-card:hover {
+  padding-left: 34px;
+
+  color: var(--ink);
+  background: #ffffff;
+
+  transform: translateY(-7px) rotate(0deg);
+  box-shadow: 14px 16px 0 var(--ink);
+}
+
+.theme-card span {
+  display: grid;
+  place-items: center;
+
+  width: 56px;
+  height: 56px;
+
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+
+  background: #ffffff;
+  color: var(--ink);
+
+  font-size: 13px;
+  font-weight: 900;
+
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.theme-card h3 {
+  margin: 0;
+
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: clamp(30px, 4vw, 58px);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+.theme-card p {
+  margin: 0;
+
+  color: rgba(18, 22, 51, 0.72);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.theme-card::after {
+  position: absolute;
+  right: 26px;
+  top: 18px;
+
+  color: rgba(18, 22, 51, 0.18);
+  font-size: 34px;
+  font-weight: 900;
+
+  transform: rotate(10deg);
+}
+
+.theme-card:nth-child(1)::after {
+  content: "→";
+}
+
+.theme-card:nth-child(2)::after {
+  content: "★";
+}
+
+.theme-card:nth-child(3)::after {
+  content: "♡";
+}
+
+.theme-card:nth-child(4)::after {
+  content: "?";
+}
+
+
+/* ========================================
+   STORY AND QUESTIONS - MOBILE
+======================================== */
+
+@media (max-width: 900px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-visual {
+    max-width: 620px;
+  }
+
+  .story-text {
+    padding: 42px 30px;
+  }
+
+  .theme-card {
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
+  }
+
+  .theme-card p {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .photo-placeholder {
+    min-height: 410px;
+    border-radius: 24px;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+
+  .vertical-note {
+    right: -8px;
+  }
+
+  .story-text {
+    padding: 38px 24px 28px;
+    border-radius: 26px;
+    box-shadow: 7px 7px 0 var(--ink);
+  }
+
+  .story-text::before {
+    top: -25px;
+    right: 18px;
+
+    width: 56px;
+    height: 56px;
+
+    font-size: 32px;
+  }
+
+  .large-copy {
+    font-size: 31px;
+  }
+
+  .theme-list {
+    gap: 16px;
+  }
+
+  .theme-card {
+    grid-template-columns: 50px 1fr;
+
+    min-height: 0;
+    padding: 24px 20px;
+
+    border-radius: 22px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .theme-card:hover {
+    padding-left: 20px;
+    transform: translateY(-4px);
+    box-shadow: 9px 10px 0 var(--ink);
+  }
+
+  .theme-card span {
+    width: 44px;
+    height: 44px;
+  }
+
+  .theme-card h3 {
+    font-size: 34px;
+  }
+
+  .theme-card p {
+    font-size: 14px;
+  }
+}
