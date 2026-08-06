@@ -182,8 +182,37 @@ h1 .outline {
 }
 .button-light { background: white; }
 .text-link { font-size: 13px; font-weight: 900; border-bottom: 1px solid currentColor; padding-bottom: 5px; }
-.phone-stage { position: relative; z-index: 3; justify-self: center; transform: rotate(6deg); }
-.phone { position: relative; width: min(330px, 34vw); aspect-ratio: 9/18.3; padding: 12px; border: 3px solid var(--ink); border-radius: 45px; background: var(--ink); box-shadow: 20px 24px 0 rgba(0,0,0,.18); }
+.phone-stage{
+
+    position:relative;
+
+    animation: phoneFloat 5s ease-in-out infinite;
+
+    transform-style:preserve-3d;
+
+}
+.phone { position: relative; width: min(330px, 34vw); aspect-ratio: 9/18.3; padding: 12px; border: 3px solid var(--ink); border-radius: 45px; background: var(--ink); box-shadow: 20px 24px 0 rgba(0,0,0,.18);overflow:hidden; }
+.phone::after{
+
+content:"";
+
+position:absolute;
+
+top:-20%;
+
+left:-120%;
+
+width:60%;
+
+height:160%;
+
+background:rgba(255,255,255,.25);
+
+transform:rotate(25deg);
+
+animation:glassLight 5s infinite;
+
+}
 .phone-top { position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 35%; height: 22px; background: var(--ink); border-radius: 20px; z-index: 3; }
 .phone-screen { height: 100%; position: relative; border-radius: 34px; overflow: hidden; background: linear-gradient(160deg,#778cff,#f0cab2 60%,#21284a); }
 .screen-gradient { position:absolute; inset:0; background: linear-gradient(transparent 45%,rgba(0,0,0,.78)); }
@@ -1033,5 +1062,199 @@ footer > p { grid-column:1/-1; margin:20px 0 0; padding-top:25px; border-top:1px
 
   .theme-card p {
     font-size: 14px;
+  }
+}
+.photo-placeholder {
+  position: relative;
+  min-height: 540px;
+  padding: 28px;
+
+  display: flex;
+  align-items: flex-end;
+
+  border: 3px solid var(--ink);
+  border-radius: 30px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 20% 18%,
+      rgba(217, 255, 56, 0.95),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 78% 70%,
+      rgba(255, 79, 163, 0.72),
+      transparent 28%
+    ),
+    linear-gradient(
+      145deg,
+      #6677ff 0%,
+      #4de6ff 48%,
+      #ffd4e6 100%
+    );
+
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+
+  box-shadow: 12px 12px 0 var(--ink);
+}
+
+.photo-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 14% 12% 0 28%;
+
+  background:
+    linear-gradient(
+      #1d1d29 0 17%,
+      #f1ece4 17% 100%
+    );
+
+  clip-path: polygon(
+    28% 0,
+    72% 0,
+    80% 18%,
+    100% 100%,
+    0 100%,
+    20% 18%
+  );
+
+  opacity: 0.9;
+}
+
+.photo-placeholder::after {
+  content: "まだ、わからなくていい。";
+  position: absolute;
+  top: 24px;
+  left: 24px;
+
+  padding: 10px 16px;
+
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+
+  background: var(--lime);
+  color: var(--ink);
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: rotate(-4deg);
+}
+
+.story-visual::before {
+  content: "WHY?";
+  position: absolute;
+  z-index: 4;
+  right: -26px;
+  bottom: 50px;
+
+  display: grid;
+  place-items: center;
+
+  width: 82px;
+  height: 82px;
+
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+
+  background: var(--pink);
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 900;
+
+  box-shadow: 5px 5px 0 var(--ink);
+  transform: rotate(10deg);
+
+  animation: storyVisualFloat 4.5s ease-in-out infinite;
+}
+
+.story-visual::after {
+  content: "FIND YOUR WHY";
+  position: absolute;
+  z-index: 4;
+  left: -20px;
+  bottom: 28px;
+
+  padding: 10px 16px;
+
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+
+  background: var(--cyan);
+  color: var(--ink);
+
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: rotate(-5deg);
+}
+
+@keyframes storyVisualFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(10deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+
+@media (max-width: 560px) {
+  .photo-placeholder {
+    min-height: 410px;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+
+  .story-visual::before {
+    right: -4px;
+    bottom: 36px;
+
+    width: 64px;
+    height: 64px;
+
+    font-size: 17px;
+  }
+
+  .story-visual::after {
+    left: 8px;
+    bottom: 18px;
+  }
+}
+@keyframes phoneFloat{
+
+0%{
+transform:translateY(0px) rotate(-6deg);
+}
+
+50%{
+transform:translateY(-18px) rotate(-2deg);
+}
+
+100%{
+transform:translateY(0px) rotate(-6deg);
+}
+
+}
+@keyframes phoneGlassLight {
+  0% {
+    left: -120%;
+  }
+
+  55% {
+    left: -120%;
+  }
+
+  100% {
+    left: 160%;
   }
 }
