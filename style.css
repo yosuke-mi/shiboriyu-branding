@@ -2097,3 +2097,39 @@ transform:translateY(0px) rotate(-6deg);
     height: 150px;
   }
 }
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    height: 68px;
+    padding: 0 16px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 96px 20px 56px;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy {
+    width: 100%;
+    position: relative;
+    z-index: 5;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 15vw, 72px);
+    line-height: 1.02;
+    overflow-wrap: anywhere;
+  }
+
+  .phone-stage {
+    width: 100%;
+    max-width: 320px;
+    margin: 40px auto 0;
+  }
+}
