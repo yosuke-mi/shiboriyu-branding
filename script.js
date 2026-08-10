@@ -13,6 +13,16 @@ reveals.forEach((el) => observer.observe(el));
 
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('.global-nav');
+const navClose = document.querySelector('.nav-close');
+
+const closeMenu = () => {
+  nav.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  menuButton.classList.remove('is-open');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'メニューを開く');
+  document.body.style.overflow = '';
+};
 
 menuButton.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('open');
@@ -25,23 +35,18 @@ menuButton.addEventListener('click', () => {
 
 nav.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    document.body.classList.remove('menu-open');
-    menuButton.classList.remove('is-open');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', 'メニューを開く');
-    document.body.style.overflow = '';
+    closeMenu();
   });
+});
+
+navClose.addEventListener('click', () => {
+  closeMenu();
+  menuButton.focus();
 });
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && nav.classList.contains('open')) {
-    nav.classList.remove('open');
-    document.body.classList.remove('menu-open');
-    menuButton.classList.remove('is-open');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', 'メニューを開く');
-    document.body.style.overflow = '';
+    closeMenu();
     menuButton.focus();
   }
 });
