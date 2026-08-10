@@ -8,6 +8,8 @@
   --lime: #d9ff38;
   --pink: #ff4fa3;
   --coral: #ff6655;
+  --acid: #d9ff38;
+  --red: #ff6655;
 
   --muted: #69708a;
   --line: rgba(18, 22, 51, 0.14);
@@ -521,7 +523,21 @@ footer > p { grid-column:1/-1; margin:20px 0 0; padding-top:25px; border-top:1px
 }
   .global-nav { position:fixed; inset:0; z-index:-1; display:flex; flex-direction:column; justify-content:center; background:var(--ink); color:white; font-size:22px; opacity:0; visibility:hidden; transition:.25s; mix-blend-mode:normal; }
   .global-nav.open { opacity:1; visibility:visible; z-index:49; }
-  .menu-button { display:block; position:relative; z-index:51; color:white; }
+  .menu-button {
+    display: grid;
+    place-items: center;
+    position: relative;
+    z-index: 51;
+    width: 48px;
+    height: 48px;
+    margin-right: -8px;
+    color: var(--ink);
+    border-radius: 50%;
+  }
+  .menu-button span { transition: transform .25s ease, background-color .25s ease; }
+  .menu-button.is-open { color: white; }
+  .menu-button.is-open span:first-child { transform: translateY(4px) rotate(45deg); }
+  .menu-button.is-open span:last-child { transform: translateY(-4px) rotate(-45deg); }
   .hero { grid-template-columns:1fr; padding:120px 24px 80px; }
   .hero-copy { align-self:end; }
   h1 { font-size:clamp(52px,16vw,90px); }
@@ -559,6 +575,158 @@ footer > p { grid-column:1/-1; margin:20px 0 0; padding-top:25px; border-top:1px
   .quote-inner p { font-size:24px; }.quote-inner strong{font-size:42px}
   footer { grid-template-columns:1fr; }
   .footer-links { flex-direction:column; gap:12px; }
+}
+
+/* ========================================
+   MOBILE READABILITY / TOUCH TARGETS
+======================================== */
+@media (max-width: 560px) {
+  .site-header {
+    height: 72px;
+    padding: 0 18px;
+  }
+
+  .logo {
+    gap: 9px;
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .global-nav {
+    gap: 18px;
+    padding: 88px 24px 32px;
+    font-size: 20px;
+  }
+
+  .global-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    color: white;
+  }
+
+  .global-nav .nav-cta {
+    width: min(100%, 300px);
+    min-height: 54px;
+  }
+
+  .hero {
+    min-height: 100svh;
+    padding: 108px 20px 64px;
+  }
+
+  h1 {
+    max-width: 94vw;
+    margin-bottom: 28px;
+    font-size: clamp(46px, 14.5vw, 62px);
+    line-height: 1.02;
+    letter-spacing: -.065em;
+  }
+
+  h1 .outline {
+    -webkit-text-stroke-width: 1.5px;
+    text-shadow: 3px 3px 0 var(--blue), 6px 6px 0 var(--cyan);
+  }
+
+  .hero-lead {
+    max-width: 78%;
+    margin: 28px 0 34px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .hero-actions,
+  .eqao-actions {
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .button {
+    min-height: 56px;
+    padding: 0 22px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .scroll-label { display: none; }
+
+  .section {
+    padding: 80px 20px;
+  }
+
+  .section-number {
+    top: 34px;
+    right: 18px;
+    font-size: 50px;
+  }
+
+  .section-heading {
+    margin-bottom: 42px;
+    padding-right: 12px;
+  }
+
+  .section-heading h2,
+  .eqao-copy h2 {
+    font-size: clamp(30px, 9.2vw, 38px);
+    line-height: 1.35;
+    letter-spacing: -.045em;
+    overflow-wrap: anywhere;
+  }
+
+  .section-heading h2 br,
+  .eqao-copy h2 br {
+    display: none;
+  }
+
+  .story-grid { gap: 48px; }
+  .story-visual { width: calc(100% - 8px); }
+  .photo-placeholder { min-height: 360px; padding: 20px; }
+  .photo-placeholder::after { left: 16px; top: 16px; padding: 8px 11px; font-size: 10px; }
+  .vertical-note { top: 24px; right: -10px; font-size: 11px; }
+
+  .story-text { padding: 36px 20px 26px; }
+  .large-copy { font-size: 27px; line-height: 1.55; }
+  .large-copy br { display: none; }
+  .story-text > p:not(.large-copy) { font-size: 15px; line-height: 1.9; }
+  .story-text > p + p { margin-top: 18px; }
+
+  .theme-card { gap: 14px; padding: 22px 18px; }
+  .theme-card::after { right: 16px; top: 14px; font-size: 26px; }
+  .theme-card h3 { padding-right: 24px; font-size: 31px; }
+  .theme-card p { font-size: 14px; line-height: 1.7; }
+
+  .episode-slider {
+    margin-right: -20px;
+    padding: 4px 20px 24px 2px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ink) rgba(18, 22, 51, .12);
+  }
+  .episode-card { flex-basis: 82vw; }
+  .episode-card h3 { font-size: 20px; }
+  .episode-card p { font-size: 14px; }
+
+  .quote-section { min-height: auto; padding: 88px 20px; }
+  .quote-inner p { font-size: 21px; line-height: 1.7; }
+  .quote-inner p br { display: none; }
+  .quote-inner strong { margin-top: 36px; font-size: 34px; line-height: 1.4; }
+
+  .eqao-card { gap: 36px; padding: 38px 20px 28px; }
+  .eqao-copy > p { font-size: 15px; line-height: 1.9; }
+
+  .final-cta { min-height: 70svh; padding: 84px 20px; }
+  .final-copy h2 { font-size: clamp(44px, 14vw, 60px); line-height: 1.15; }
+  .final-copy h2 br { display: none; }
+
+  footer { padding: 48px 20px 28px; }
+  .footer-links a { display: flex; align-items: center; min-height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
@@ -2250,4 +2418,159 @@ body {
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
+}
+
+/* Final mobile overrides: keep these last so the component redesigns above
+   cannot reintroduce oversized type or cramped touch targets. */
+@media (max-width: 560px) {
+  .site-header { height: 72px; padding: 0 18px; z-index: 1000; }
+
+  .global-nav {
+    z-index: 1001;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 104px 20px 32px;
+    overflow-y: auto;
+    background:
+      radial-gradient(circle at 92% 12%, rgba(51, 230, 255, .3), transparent 27%),
+      linear-gradient(155deg, #fffaf2 0%, #f3efff 58%, #e8fbff 100%);
+    color: var(--ink);
+  }
+
+  .global-nav.open { z-index: 1001; }
+
+  .global-nav > a:not(.nav-cta) {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    justify-content: stretch;
+    width: min(100%, 440px);
+    min-height: 72px;
+    padding: 13px 18px;
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .9);
+    color: var(--ink);
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: .08em;
+    text-align: left;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  .global-nav > a:not(.nav-cta)::before {
+    content: attr(data-ja);
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .05em;
+  }
+
+  .global-nav > a:not(.nav-cta)::after {
+    content: "↓";
+    grid-column: 2;
+    grid-row: 1 / 3;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--lime);
+    color: var(--ink);
+    font-size: 16px;
+  }
+
+  .global-nav > a:nth-child(2)::after { background: var(--cyan); }
+  .global-nav > a:nth-child(3)::after { background: #ffb5d5; }
+  .global-nav > a:nth-child(4)::after { background: #ffe295; }
+
+  .global-nav .nav-cta {
+    width: min(100%, 440px);
+    min-height: 58px;
+    margin-top: 12px;
+    color: #fff;
+    font-size: 15px;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .menu-button.is-open {
+    z-index: 1002;
+    color: var(--ink);
+    background: rgba(255, 255, 255, .82);
+  }
+
+  .hero { padding: 108px 20px 64px; }
+  .hero h1 {
+    font-size: clamp(46px, 14.5vw, 62px);
+    line-height: 1.02;
+  }
+  .hero h1 .outline {
+    -webkit-text-stroke-width: 1.5px;
+    text-shadow: 3px 3px 0 var(--blue), 6px 6px 0 var(--cyan);
+  }
+  .hero-lead { max-width: 88%; font-size: 16px; }
+  .phone-stage { width: min(82vw, 310px); margin-top: 56px; }
+
+  .section-heading h2,
+  .eqao-copy h2 {
+    font-size: clamp(30px, 9.2vw, 38px);
+    line-height: 1.35;
+    letter-spacing: -.045em;
+  }
+  .section-heading h2 br,
+  .eqao-copy h2 br,
+  .large-copy br { display: none; }
+
+  .photo-placeholder { min-height: 360px; padding: 20px; }
+  .photo-placeholder::after { top: 16px; left: 16px; padding: 8px 11px; font-size: 10px; }
+  .large-copy { font-size: 27px; }
+  .story-text { padding: 36px 20px 26px; }
+
+  .theme-card { padding: 22px 18px; gap: 14px; }
+  .theme-card h3 { padding-right: 24px; font-size: 31px; }
+
+  .quote-section { min-height: auto; padding: 88px 20px; }
+  .quote-inner p { font-size: 21px; line-height: 1.7; }
+  .quote-inner p br { display: none; }
+  .quote-inner strong { font-size: 34px; line-height: 1.4; }
+
+  .eqao-card { padding: 42px 20px 30px; }
+  .eqao-symbol { min-height: 290px; }
+
+  .final-cta { min-height: auto; padding: 84px 20px; }
+  .final-copy { padding: 42px 20px; }
+  .final-copy h2 {
+    font-size: clamp(42px, 12vw, 52px);
+    line-height: 1.16;
+    letter-spacing: -.06em;
+  }
+  .final-copy h2 br { display: none; }
+  .final-question { width: 170px; font-size: 180px; }
+}
+
+/* The reveal fallback uses !important visibility on page content, so remove
+   the page from layout while the mobile menu is open instead of hiding it. */
+@media (max-width: 900px) {
+  body.menu-open main,
+  body.menu-open footer {
+    display: none;
+  }
+
+  body.menu-open .site-header {
+    min-height: 100dvh;
+    border-bottom: 0;
+    background:
+      radial-gradient(circle at 92% 12%, rgba(51, 230, 255, .3), transparent 27%),
+      linear-gradient(155deg, #fffaf2 0%, #f3efff 58%, #e8fbff 100%);
+  }
+
+  body.menu-open .logo {
+    visibility: hidden;
+  }
 }
