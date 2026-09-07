@@ -39,12 +39,10 @@ nav.querySelectorAll('a').forEach((link) => {
   });
 });
 
-if (navClose) {
-  navClose.addEventListener('click', () => {
-    closeMenu();
-    menuButton.focus();
-  });
-}
+navClose.addEventListener('click', () => {
+  closeMenu();
+  menuButton.focus();
+});
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && nav.classList.contains('open')) {
@@ -52,31 +50,3 @@ document.addEventListener('keydown', (event) => {
     menuButton.focus();
   }
 });
-
-/* Theme card: make tap behave like hover on touch devices
-   - toggle .active on click, remove from siblings
-   - support Enter/Space for keyboard access
-*/
-(() => {
-  const themeCards = document.querySelectorAll('.theme-card');
-  if (!themeCards || themeCards.length === 0) return;
-
-  themeCards.forEach((card) => {
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
-    card.setAttribute('aria-expanded', 'false');
-
-    card.addEventListener('click', (e) => {
-      const isActive = card.classList.toggle('active');
-      themeCards.forEach((c) => { if (c !== card) c.classList.remove('active'); });
-      card.setAttribute('aria-expanded', String(isActive));
-    });
-
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.click();
-      }
-    });
-  });
-})();
