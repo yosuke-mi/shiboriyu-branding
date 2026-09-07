@@ -264,6 +264,46 @@ animation:glassLight 5s infinite;
 .theme-list { border-top:1px solid rgba(255,255,255,.25); }
 .theme-card { display:grid; grid-template-columns:90px .35fr 1fr; align-items:center; gap:30px; min-height:160px; border-bottom:1px solid rgba(255,255,255,.25); transition:.25s; }
 .theme-card:hover { padding-left:25px; background:var(--acid); color:var(--ink); }
+
+/* Desktop two-column layout */
+@media (min-width: 900px) {
+  .theme-list { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .theme-card { min-height: 220px; }
+}
+
+/* Popover element shown on hover or .active */
+.theme-card { position: relative; }
+.theme-pop {
+  position: absolute;
+  right: -340px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  padding: 22px;
+  background: white;
+  color: var(--ink);
+  border-radius: 12px;
+  box-shadow: 8px 12px 40px rgba(18,22,51,0.12);
+  display: none;
+  z-index: 40;
+}
+.theme-pop p { margin: 0; font-size: 14px; line-height:1.6; }
+.theme-card:hover .theme-pop, .theme-card.active .theme-pop { display: block; }
+
+@media (max-width: 640px) {
+  .theme-pop { position: static; transform: none; width: 100%; margin-top: 12px; display: none; }
+  .theme-card.active .theme-pop { display: block; }
+}
+
+/* Make tap (active) behave like hover on touch devices */
+.theme-card.active { padding-left:25px; background:var(--acid); color:var(--ink); }
+.theme-card.active h3, .theme-card.active p, .theme-card.active span { color: inherit; }
+
+@media (hover: none) {
+  /* For touch devices, ensure :hover styles aren't required */
+  .theme-card:hover { background: transparent; }
+  .theme-card.active { box-shadow: 0 6px 18px rgba(18,22,51,0.08); }
+}
 .theme-card span { font-size:13px; }
 .theme-card h3 { font-size:clamp(28px,4vw,55px); margin:0; }
 .theme-card p { margin:0; font-size:16px; line-height:1.8; }
@@ -538,6 +578,10 @@ footer > p { grid-column:1/-1; margin:20px 0 0; padding-top:25px; border-top:1px
 }
   .global-nav { position:fixed; inset:0; z-index:-1; display:flex; flex-direction:column; justify-content:center; background:var(--ink); color:white; font-size:22px; opacity:0; visibility:hidden; transition:.25s; mix-blend-mode:normal; }
   .global-nav.open { opacity:1; visibility:visible; z-index:49; }
+  /* nav-close button (positioned top-right on mobile) */
+  .global-nav .nav-close { position: absolute; top: 18px; right: 18px; width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.9); display: grid; place-items:center; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); z-index: 60; }
+  .global-nav .nav-close span { position: relative; display:block; width:22px; height:2px; background:var(--ink); }
+  .global-nav .nav-close span::after { content: ''; position:absolute; left:0; top:0; width:22px; height:2px; background:var(--ink); transform: rotate(90deg); }
   .menu-button {
     display: grid;
     place-items: center;
