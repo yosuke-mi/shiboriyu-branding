@@ -3479,3 +3479,168 @@ p {
     margin-top: 12px;
   }
 }
+
+/* ========================================
+   RESPONSIVE FIXES (2026-09)
+   タブレット・スマホでのはみ出し / 崩れ対策
+   ※ 上書き構造のため必ずファイル末尾に置く
+======================================== */
+
+/* 横方向のはみ出しを根本から防ぐ（iOS Safari は body の overflow-x:hidden を無視することがある） */
+html,
+body {
+  overflow-x: clip;
+}
+
+main {
+  overflow-x: clip;
+}
+
+/* 文節単位で改行させる（Safari は word-break:auto-phrase 非対応のため HTML 側で区切る） */
+.ph {
+  display: inline-block;
+}
+
+/* ---- 901px〜1280px：iPad 横向き・小さめのPC画面 ---- */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .hero {
+    padding: 120px 5vw 70px;
+    column-gap: 3vw;
+  }
+
+  .story-grid {
+    gap: 5vw;
+  }
+
+  .story-text {
+    padding: 36px 30px;
+  }
+
+  .large-copy {
+    font-size: clamp(26px, 3vw, 40px);
+  }
+
+  .reason-sheet h3 {
+    font-size: clamp(22px, 2.6vw, 30px);
+  }
+
+  .episode-slider {
+    gap: 18px;
+  }
+
+  .episode-card {
+    padding: 12px 12px 18px;
+  }
+
+  .episode-card h3 {
+    font-size: 17px;
+  }
+
+  .episode-card p {
+    font-size: 12px;
+  }
+
+  /* MESSAGE：星型ステッカーが本文に重ならないよう下段へ退避 */
+  .quote-section {
+    padding: 90px 6vw 170px;
+  }
+
+  .quote-inner p {
+    font-size: clamp(20px, 2.2vw, 30px);
+  }
+
+  .quote-inner strong {
+    font-size: clamp(32px, 3.8vw, 52px);
+  }
+
+  .quote-section::after {
+    top: auto;
+    bottom: 28px;
+    right: 5vw;
+    width: 120px;
+    font-size: 14px;
+  }
+
+  /* EQAO：見出しが1行数文字ずつにならないよう縮小 */
+  .eqao-card {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 36px;
+    padding: clamp(40px, 5vw, 64px);
+  }
+
+  .eqao-copy h2 {
+    font-size: clamp(32px, 3.9vw, 56px);
+  }
+
+  .eqao-symbol {
+    min-height: 400px;
+  }
+
+  .eqao-symbol::before {
+    width: 260px;
+    height: 260px;
+  }
+
+  .eqao-symbol span {
+    font-size: clamp(44px, 5vw, 72px);
+  }
+
+  .eqao-symbol span:nth-child(1) {
+    width: 130px;
+    height: 130px;
+  }
+
+  .eqao-symbol span:nth-child(4) {
+    width: 160px;
+    height: 160px;
+  }
+
+  .final-copy {
+    padding: 44px;
+  }
+
+  .final-copy h2 {
+    font-size: clamp(44px, 5.6vw, 84px);
+  }
+
+  .final-question {
+    width: min(30vw, 360px);
+    font-size: clamp(180px, 22vw, 340px);
+  }
+}
+
+/* ---- 〜360px：小型スマホ（iPhone SE 等） ---- */
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: clamp(34px, 11.5vw, 42px);
+  }
+
+  .section-heading h2,
+  .eqao-copy h2 {
+    font-size: 28px;
+  }
+
+  .large-copy {
+    font-size: 25px;
+  }
+
+  .quote-inner p {
+    font-size: 19px;
+  }
+
+  .quote-inner strong {
+    font-size: 27px;
+  }
+
+  .final-copy h2 {
+    font-size: 38px;
+  }
+
+  .theme-card h3 {
+    font-size: 28px;
+  }
+
+  .episode-card {
+    flex-basis: 86vw;
+  }
+}
